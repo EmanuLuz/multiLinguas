@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaFlow · Traduza qualquer idioma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <header class="navbar">
+    <a href="#" class="logo">
+      <span class="logo-mark"><i class="fas fa-language"></i></span>
+      <span class="logo-name">LinguaFlow</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#">Tradutor</a>
+      <a href="#">Recursos</a>
+      <a href="#">Planos</a>
+      <a href="#">Escolas</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn-outline">Entrar</button>
+      <button class="btn-fill">Cadastrar</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="hero-pill">
+      <span class="pill-dot"></span>
+      Tradução instantânea · 25 idiomas
+    </span>
+    <h1>Traduza <span class="grad">qualquer coisa</span><br>para qualquer idioma</h1>
+    <p>Escolha as línguas, digite e receba a tradução em tempo real.</p>
+  </section>
+
+  <main class="translator-wrap">
+    <div class="translator">
+
+      <div class="lang-bar">
+        <div class="lang-picker" id="sourcePicker">
+          <button class="lang-btn" id="sourceBtn" type="button">
+            <span class="flag" id="sourceFlag">🇧🇷</span>
+            <span class="lang-info">
+              <small>De</small>
+              <span class="lang-name" id="sourceName">Português</span>
+            </span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="lang-menu" id="sourceMenu"></ul>
+        </div>
+
+        <button class="swap-btn" id="swapBtn" title="Inverter idiomas" type="button">
+          <i class="fas fa-arrows-rotate"></i>
+        </button>
+
+        <div class="lang-picker" id="targetPicker">
+          <button class="lang-btn" id="targetBtn" type="button">
+            <span class="flag" id="targetFlag">🇺🇸</span>
+            <span class="lang-info">
+              <small>Para</small>
+              <span class="lang-name" id="targetName">Inglês</span>
+            </span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="lang-menu" id="targetMenu"></ul>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <textarea id="sourceText" maxlength="1000" placeholder="Digite qualquer palavra ou frase...">Olá, como você está?</textarea>
+        <div class="input-tools">
+          <span class="counter"><span id="charCount">21</span> / 1000</span>
+          <button class="icon-btn" id="clearBtn" title="Limpar" type="button"><i class="fas fa-times"></i></button>
+          <button class="icon-btn" id="micBtn" title="Falar" type="button"><i class="fas fa-microphone"></i></button>
+        </div>
+      </div>
+
+      <div class="output-area" id="outputArea">
+        <div class="output-head">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          <span>Tradução</span>
+          <button class="copy-btn" id="copyBtn" title="Copiar" type="button">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <p id="translatedText">Hello, how are you?</p>
+      </div>
+
+      <button class="translate-btn" id="translateBtn" type="button">
+        <i class="fas fa-language"></i>
+        Traduzir agora
+      </button>
+
+    </div>
+
+    <p class="hint">
+      <i class="fas fa-lightbulb"></i>
+      Dica: pressione <kbd>Ctrl</kbd> + <kbd>Enter</kbd> para traduzir rápido
+    </p>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 LinguaFlow</span>
+    <span><i class="fas fa-shield-halved"></i> LGPD</span>
+    <span><i class="fas fa-bolt"></i> Resposta &lt; 1s</span>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
