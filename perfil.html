@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi Línguas | Perfil</title>
+  <link rel="stylesheet" href="css/perfil.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="perfil-page">
+  <header class="perfil-header">
+    <div class="logo">
+      <span class="logo-icon">🌐</span>
+      <h1>Multi Línguas</h1>
+    </div>
+    <nav class="perfil-nav">
+      <button class="btn-logout" id="btn-logout">Sair</button>
+    </nav>
+  </header>
+
+  <main class="perfil-main">
+    <div class="perfil-card">
+      <h2>Meu Perfil</h2>
+
+      <div class="perfil-info">
+        <div class="info-item">
+          <span class="info-label">Nome</span>
+          <span class="info-valor" id="perfil-nome"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">E-mail</span>
+          <span class="info-valor" id="perfil-email"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Idade</span>
+          <span class="info-valor" id="perfil-idade"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Faixa etária</span>
+          <span class="info-valor" id="perfil-faixa"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Plano</span>
+          <span class="info-valor badge-vip" id="perfil-plano">Gratuito</span>
+        </div>
+      </div>
+
+      <div class="perfil-idiomas">
+        <h3>Idiomas que estudo</h3>
+        <div class="idiomas-grid" id="lista-idiomas-perfil"></div>
+        <div class="selection-info">
+          <span id="contador-perfil">0 idiomas selecionados</span>
+        </div>
+        <button type="button" class="btn-primary" id="btn-salvar-idiomas" disabled>Salvar Idiomas</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/perfil.js"></script>
+</body>
+</html>

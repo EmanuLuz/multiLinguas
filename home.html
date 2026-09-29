@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Línguas | Aprenda e traduza</title>
+  <link rel="stylesheet" href="css/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NÂO ESTÀ PRONTO-->
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="20" height="16" rx="2" fill="#7C3AED"/>
+            <rect x="10" y="10" width="20" height="16" rx="2" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1.5"/>
+            <path d="M16 15h8M16 19h5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">Multi<strong>Línguas</strong></span>
+      </div>
+
+      <nav class="nav-desktop">
+        <a href="#" class="nav-link active" data-tab="home">Início</a>
+        <a href="#" class="nav-link" data-tab="traducao">Tradução</a>
+        <a href="#" class="nav-link" data-tab="chat">Chat</a>
+        <a href="#" class="nav-link" data-tab="dicionario">Dicionário</a>
+        <a href="#" class="nav-link" data-tab="progresso">Progresso</a>
+        <a href="#" class="nav-link" data-tab="relatorios">Relatórios</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-vip" id="btnVip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+          VIP
+        </button>
+        <button class="btn-profile" id="btnProfile">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="nav-mobile" id="navMobile">
+      <a href="#" class="nav-link active" data-tab="home">Início</a>
+      <a href="#" class="nav-link" data-tab="traducao">Tradução</a>
+      <a href="#" class="nav-link" data-tab="chat">Chat</a>
+      <a href="#" class="nav-link" data-tab="dicionario">Dicionário</a>
+      <a href="#" class="nav-link" data-tab="progresso">Progresso</a>
+      <a href="#" class="nav-link" data-tab="relatorios">Relatórios</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-badge">Plataforma Educacional Multi-línguas</span>
+        <h1 class="hero-title">Aprenda idiomas <span class="highlight">conversando</span> de verdade</h1>
+        <p class="hero-subtitle">Pratique com tradução em tempo real, acompanhe sua evolução e conecte-se com o mundo — tudo em um só lugar.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" id="btnComecar">
+            Começar agora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <button class="btn-secondary" id="btnSaibaMais">Saiba mais</button>
+        </div>
+      </div>
+
+      <div class="hero-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.5 3 4 7 4 10s-1.5 7-4 10c-2.5-3-4-7-4-10s1.5-7 4-10z"/></svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">12+</span>
+            <span class="stat-label">Idiomas disponíveis</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">5k+</span>
+            <span class="stat-label">Estudantes ativos</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Satisfação</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">4.9</span>
+            <span class="stat-label">Avaliação média</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards de acesso rápido -->
+    <section class="quick-access">
+      <div class="section-header">
+        <h2 class="section-title">O que você quer fazer hoje?</h2>
+        <p class="section-subtitle">Acesse rapidamente as principais funcionalidades da plataforma</p>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="card" data-tab="traducao">
+          <div class="card-icon icon-purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c0 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+          </div>
+          <h3 class="card-title">Tradução em Tempo Real</h3>
+          <p class="card-desc">Traduza frases e conversas instantaneamente entre vários idiomas.</p>
+          <span class="card-link">Acessar <span class="arrow">→</span></span>
+        </div>
+
+        <div class="card" data-tab="chat">
+          <div class="card-icon icon-blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="card-title">Chat com Tradução</h3>
+          <p class="card-desc">Converse com segurança e pratique com tradução automática.</p>
+          <span class="card-link">Acessar <span class="arrow">→</span></span>
+        </div>
+
+        <div class="card" data-tab="dicionario">
+          <div class="card-icon icon-green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3 class="card-title">Meu Dicionário</h3>
+          <p class="card-desc">Personalize seu vocabulário e salve palavras importantes.</p>
+          <span class="card-link">Acessar <span class="arrow">→</span></span>
+        </div>
+
+        <div class="card" data-tab="progresso">
+          <div class="card-icon icon-orange">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+          </div>
+          <h3 class="card-title">Meu Progresso</h3>
+          <p class="card-desc">Acompanhe sua evolução, tempo de prática e nível de fluência.</p>
+          <span class="card-link">Acessar <span class="arrow">→</span></span>
+        </div>
+
+        <div class="card" data-tab="relatorios">
+          <div class="card-icon icon-pink">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <h3 class="card-title">Relatórios Escolares</h3>
+          <p class="card-desc">Área para professores e instituições acompanharem turmas.</p>
+          <span class="card-link">Acessar <span class="arrow">→</span></span>
+        </div>
+
+        <div class="card card-vip" data-tab="vip">
+          <div class="card-badge">POPULAR</div>
+          <div class="card-icon icon-gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <h3 class="card-title">Plano VIP</h3>
+          <p class="card-desc">Traduções ilimitadas, benefícios exclusivos e muito mais.</p>
+          <span class="card-link">Conhecer <span class="arrow">→</span></span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Progresso -->
+    <section class="progress-section">
+      <div class="progress-card">
+        <div class="progress-left">
+          <div class="progress-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <h3 class="progress-title">Continue de onde parou</h3>
+            <p class="progress-subtitle">Módulo 7 — Conversação Básica</p>
+          </div>
+        </div>
+
+        <div class="progress-middle">
+          <div class="progress-info">
+            <span class="progress-badge">Nível Intermediário</span>
+            <span class="progress-percent">65%</span>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar" style="width: 65%;"></div>
+          </div>
+          <p class="progress-text">12 módulos restantes • 3h 20min de prática</p>
+        </div>
+
+        <button class="btn-primary btn-small" id="btnContinuar">
+          Continuar
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="6" width="20" height="16" rx="2" fill="#A78BFA"/>
+              <rect x="10" y="10" width="20" height="16" rx="2" fill="#FFFFFF" stroke="#A78BFA" stroke-width="1.5"/>
+              <path d="M16 15h8M16 19h5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="logo-text">Multi<strong>Línguas</strong></span>
+        </div>
+        <p class="footer-desc">Ecossistema educacional e de tradução multi-línguas para estudantes e instituições.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Plataforma</h4>
+        <a href="#" data-tab="traducao">Tradução</a>
+        <a href="#" data-tab="chat">Chat</a>
+        <a href="#" data-tab="dicionario">Dicionário</a>
+        <a href="#" data-tab="progresso">Progresso</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>Institucional</h4>
+        <a href="#" data-tab="relatorios">Relatórios</a>
+        <a href="#" data-tab="vip">Planos VIP</a>
+        <a href="#">Suporte</a>
+        <a href="#">Privacidade</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>Contato</h4>
+        <a href="#">contato@multilinguas.com</a>
+        <a href="#">Portal do Professor</a>
+        <a href="#">Central de Ajuda</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Multi Línguas — Projeto Acadêmico | Análise e Projeto de Sistemas</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/home.js"></script>
+</body>
+</html>

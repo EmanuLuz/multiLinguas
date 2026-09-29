@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi Línguas | Criar Conta</title>
+  <link rel="stylesheet" href="css/criarConta.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="auth-page">
+  <div class="background-shapes">
+    <span class="shape shape-1"></span>
+    <span class="shape shape-2"></span>
+    <span class="shape shape-3"></span>
+  </div>
+
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="logo">
+          <span class="logo-icon">🌐</span>
+          <h1>Multi Línguas</h1>
+        </div>
+        <p class="subtitle">Crie sua conta e escolha seus idiomas</p>
+      </div>
+
+      <!-- Indicador de etapas -->
+      <div class="steps">
+        <div class="step active" id="step-indicator-1">
+          <span class="step-number">1</span>
+          <span class="step-label">Dados</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step-indicator-2">
+          <span class="step-number">2</span>
+          <span class="step-label">Idiomas</span>
+        </div>
+      </div>
+
+      <!-- ETAPA 1: DADOS -->
+      <form id="form-cadastro" class="auth-form" novalidate>
+        <div class="input-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" placeholder="Digite seu nome" required />
+          <span class="error-msg" id="erro-nome"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com" required />
+          <span class="error-msg" id="erro-email"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="idade">Idade</label>
+          <input type="number" id="idade" placeholder="Ex: 16" min="8" max="120" required />
+          <span class="error-msg" id="erro-idade"></span>
+          <small class="hint">Idade mínima: 8 anos</small>
+        </div>
+
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" placeholder="Mínimo 6 caracteres" required />
+          <span class="error-msg" id="erro-senha"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="confirmar-senha">Confirmar senha</label>
+          <input type="password" id="confirmar-senha" placeholder="Repita a senha" required />
+          <span class="error-msg" id="erro-confirmar"></span>
+        </div>
+
+        <div class="terms">
+          <label class="checkbox-label">
+            <input type="checkbox" id="termos" required />
+            <span>Aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a></span>
+          </label>
+          <span class="error-msg" id="erro-termos"></span>
+        </div>
+
+        <button type="submit" class="btn-primary">Próximo: Escolher Idiomas</button>
+      </form>
+
+      <!-- ETAPA 2: IDIOMAS -->
+      <div id="etapa-idiomas" class="etapa-idiomas hidden">
+        <p class="etapa-descricao">Selecione um ou mais idiomas que deseja estudar e traduzir:</p>
+
+        <div class="idiomas-grid" id="lista-idiomas"></div>
+
+        <div class="selection-info">
+          <span id="contador-selecionados">0 idiomas selecionados</span>
+        </div>
+
+        <div class="etapa-actions">
+          <button type="button" class="btn-secondary" id="btn-voltar-dados">Voltar</button>
+          <button type="button" class="btn-primary" id="btn-finalizar" disabled>Finalizar Cadastro</button>
+        </div>
+      </div>
+
+      <p class="auth-footer">
+        Já tem uma conta? <a href="login.html">Entrar</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="js/criarConta.js"></script>
+</body>
+</html>
