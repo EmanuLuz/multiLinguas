@@ -1,151 +1,125 @@
-// ===== CATÁLOGO DE IDIOMAS =====
-const IDIOMAS_DISPONIVEIS = [
-  { id: "en", nome: "Inglês", flag: "🇺🇸" },
-  { id: "es", nome: "Espanhol", flag: "🇪🇸" },
-  { id: "fr", nome: "Francês", flag: "🇫🇷" },
-  { id: "de", nome: "Alemão", flag: "🇩🇪" },
-  { id: "it", nome: "Italiano", flag: "🇮🇹" },
-  { id: "jp", nome: "Japonês", flag: "🇯🇵" },
-  { id: "kr", nome: "Coreano", flag: "🇰🇷" },
-  { id: "cn", nome: "Mandarim", flag: "🇨🇳" },
-  { id: "ru", nome: "Russo", flag: "🇷🇺" },
-  { id: "ar", nome: "Árabe", flag: "🇸🇦" },
-  { id: "pt", nome: "Português", flag: "🇧🇷" },
-  { id: "nl", nome: "Holandês", flag: "🇳🇱" },
-];
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('cadastroForm');
+  const feedback = document.getElementById('feedbackMessage');
+  const feedbackText = document.getElementById('feedbackText');
+  const btn = document.getElementById('btnCadastro');
 
-// ===== ELEMENTOS =====
-const form = document.getElementById("form-cadastro");
-const etapaIdiomas = document.getElementById("etapa-idiomas");
-const stepInd1 = document.getElementById("step-indicator-1");
-const stepInd2 = document.getElementById("step-indicator-2");
-const grid = document.getElementById("lista-idiomas");
-const contador = document.getElementById("contador-selecionados");
-const btnFinalizar = document.getElementById("btn-finalizar");
-const btnVoltar = document.getElementById("btn-voltar-dados");
+  const nome = document.getElementById('nome');
+  const email = document.getElementById('email');
+  const dataNasc = document.getElementById('data_nascimento');
+  const perfil = document.getElementById('tipo_perfil');
+  const faixa = document.getElementById('faixa_etaria');
+  const senha = document.getElementById('senha');
+  const confirmar = document.getElementById('confirmar_senha');
+  const termos = document.getElementById('termos');
 
-const erros = {
-  nome: document.getElementById("erro-nome"),
-  email: document.getElementById("erro-email"),
-  idade: document.getElementById("erro-idade"),
-  senha: document.getElementById("erro-senha"),
-  confirmar: document.getElementById("erro-confirmar"),
-  termos: document.getElementById("erro-termos"),
-};
+  const API = 'http://localhost:3000';
 
-let dadosCadastro = null;
-const selecionados = new Set();
+  document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
+  feedback.style.display = 'none';
 
-// ===== VALIDAÇÃO =====
-function limparErros() {
-  Object.values(erros).forEach((el) => (el.textContent = ""));
-  document.querySelectorAll("input").forEach((i) => i.classList.remove("input-error"));
-}
-
-function mostrarErro(campo, msg) {
-  erros[campo].textContent = msg;
-  const inputId = campo === "confirmar" ? "confirmar-senha" : campo;
-  const input = document.getElementById(inputId);
-  if (input) input.classList.add("input-error");
-}
-
-function emailValido(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-// ===== ETAPA 1 =====
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  limparErros();
-
-  const nome = document.getElementById("nome").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const idade = parseInt(document.getElementById("idade").value, 10);
-  const senha = document.getElementById("senha").value;
-  const confirmar = document.getElementById("confirmar-senha").value;
-  const termos = document.getElementById("termos").checked;
-
-  let valido = true;
-
-  if (nome.length < 3) { mostrarErro("nome", "Informe seu nome completo (mín. 3 caracteres)."); valido = false; }
-  if (!emailValido(email)) { mostrarErro("email", "Informe um e-mail válido."); valido = false; }
-  if (isNaN(idade) || idade < 8) { mostrarErro("idade", "A idade mínima é 8 anos."); valido = false; }
-  else if (idade > 120) { mostrarErro("idade", "Idade inválida."); valido = false; }
-  if (senha.length < 6) { mostrarErro("senha", "A senha deve ter no mínimo 6 caracteres."); valido = false; }
-  if (senha !== confirmar) { mostrarErro("confirmar", "As senhas não coincidem."); valido = false; }
-  if (!termos) { erros.termos.textContent = "Você precisa aceitar os termos."; valido = false; }
-
-  if (!valido) return;
-
-  const existente = JSON.parse(localStorage.getItem("usuarioMultiLinguas"));
-  if (existente && existente.email === email) {
-    mostrarErro("email", "Este e-mail já está cadastrado.");
-    return;
+  // -------- Idade --------
+  function calcularIdade(data) {
+    const hoje = new Date();
+    const nasc = new Date(data + 'T00:00:00');
+    let idade = hoje.getFullYear() - nasc.getFullYear();
+    const m = hoje.getMonth() - nasc.getMonth();
+    if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+    return idade;
   }
 
-  dadosCadastro = {
-    id: Date.now(),
-    nome, email, idade, senha,
-    faixaEtaria: idade >= 8 && idade <= 14 ? "infantil" : "adulto",
-    plano: "Gratuito",
-    idiomas: [],
-    criadoEm: new Date().toISOString(),
-  };
+  // -------- Faixa etária (ENUM) --------
+  dataNasc.addEventListener('change', () => {
+    if (!dataNasc.value) return;
+    const idade = calcularIdade(dataNasc.value);
 
-  form.classList.add("hidden");
-  etapaIdiomas.classList.remove("hidden");
-  stepInd1.classList.remove("active");
-  stepInd2.classList.add("active");
-});
-
-// ===== ETAPA 2 =====
-function renderizarIdiomas() {
-  IDIOMAS_DISPONIVEIS.forEach((idioma) => {
-    const card = document.createElement("div");
-    card.className = "idioma-card";
-    card.dataset.id = idioma.id;
-    card.innerHTML = `
-      <span class="idioma-flag">${idioma.flag}</span>
-      <span class="idioma-nome">${idioma.nome}</span>
-    `;
-    card.addEventListener("click", () => {
-      if (selecionados.has(idioma.id)) {
-        selecionados.delete(idioma.id);
-        card.classList.remove("selecionado");
-      } else {
-        selecionados.add(idioma.id);
-        card.classList.add("selecionado");
-      }
-      atualizarContador();
-    });
-    grid.appendChild(card);
+    if (idade >= 8 && idade <= 14) {
+      faixa.value = '8 a 14 anos';
+      faixa.dataset.value = '8_14';
+    } else if (idade >= 15 && idade <= 17) {
+      faixa.value = '15 a 17 anos';
+      faixa.dataset.value = '15_17';
+    } else if (idade >= 18) {
+      faixa.value = 'Adulto (18+)';
+      faixa.dataset.value = 'adulto';
+    } else {
+      faixa.value = 'Idade mínima: 8 anos';
+      faixa.dataset.value = '';
+    }
   });
-}
 
-function atualizarContador() {
-  const qtd = selecionados.size;
-  contador.textContent = `${qtd} idioma${qtd !== 1 ? "s" : ""} selecionado${qtd !== 1 ? "s" : ""}`;
-  btnFinalizar.disabled = qtd === 0;
-}
+  // -------- Mostrar/ocultar senha --------
+  document.querySelectorAll('.toggle-password').forEach(b => {
+    b.addEventListener('click', () => {
+      const input = b.parentElement.querySelector('input');
+      const isPass = input.type === 'password';
+      input.type = isPass ? 'text' : 'password';
+      b.querySelector('i').className = isPass ? 'fas fa-eye-slash' : 'fas fa-eye';
+    });
+  });
 
-btnVoltar.addEventListener("click", () => {
-  etapaIdiomas.classList.add("hidden");
-  form.classList.remove("hidden");
-  stepInd2.classList.remove("active");
-  stepInd1.classList.add("active");
+  // -------- Feedback --------
+  function mostrarFeedback(msg, tipo = 'info') {
+    const icons = {
+      info: 'fa-info-circle',
+      success: 'fa-check-circle',
+      error: 'fa-exclamation-circle'
+    };
+    feedback.className = `feedback-message ${tipo}`;
+    feedback.querySelector('i').className = `fas ${icons[tipo]}`;
+    feedbackText.textContent = msg;
+    feedback.style.display = 'flex';
+  }
+
+  // -------- Envio --------
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!nome.value.trim() || !email.value.trim() || !dataNasc.value ||
+        !perfil.value || !senha.value || !termos.checked) {
+      return mostrarFeedback('Preencha todos os campos obrigatórios.', 'error');
+    }
+    if (senha.value.length < 6) {
+      return mostrarFeedback('A senha deve ter ao menos 6 caracteres.', 'error');
+    }
+    if (senha.value !== confirmar.value) {
+      return mostrarFeedback('As senhas não coincidem.', 'error');
+    }
+
+    const faixaValor = faixa.dataset.value;
+    if (!faixaValor) return mostrarFeedback('Idade mínima: 8 anos.', 'error');
+
+    const payload = {
+      nome: nome.value.trim(),
+      email: email.value.trim().toLowerCase(),
+      senha: senha.value,
+      data_nascimento: dataNasc.value,
+      faixa_etaria: faixaValor,
+      tipo_perfil: perfil.value
+    };
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+
+    try {
+      const res = await fetch(`${API}/api/usuarios`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message || 'Erro ao cadastrar.');
+
+      mostrarFeedback('Conta criada com sucesso!', 'success');
+      setTimeout(() => window.location.href = 'login.html', 1500);
+
+    } catch (err) {
+      console.error(err);
+      mostrarFeedback(err.message || 'Falha na conexão.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  });
 });
-
-btnFinalizar.addEventListener("click", () => {
-  if (selecionados.size === 0) return;
-
-  const idiomasEscolhidos = IDIOMAS_DISPONIVEIS.filter((i) => selecionados.has(i.id));
-  dadosCadastro.idiomas = idiomasEscolhidos;
-
-  localStorage.setItem("usuarioMultiLinguas", JSON.stringify(dadosCadastro));
-  localStorage.setItem("usuarioLogado", JSON.stringify({ email: dadosCadastro.email }));
-
-  window.location.href = "perfil.html";
-});
-
-renderizarIdiomas();
-atualizarContador();

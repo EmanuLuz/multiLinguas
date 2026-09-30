@@ -1,107 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi Línguas | Criar Conta</title>
-  <link rel="stylesheet" href="css/criarConta.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Línguas | Cadastro</title>
+  <link rel="stylesheet" href="css/criarConta.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="auth-page">
-  <div class="background-shapes">
-    <span class="shape shape-1"></span>
-    <span class="shape shape-2"></span>
-    <span class="shape shape-3"></span>
-  </div>
+<body>
 
-  <main class="auth-container">
-    <div class="auth-card">
-      <div class="auth-header">
-        <div class="logo">
-          <span class="logo-icon">🌐</span>
-          <h1>Multi Línguas</h1>
-        </div>
-        <p class="subtitle">Crie sua conta e escolha seus idiomas</p>
+  <div class="cadastro-container">
+    <div class="cadastro-illustration">
+      <div class="illustration-logo">
+        <i class="fas fa-language"></i>
+        <span>Multi Línguas</span>
       </div>
 
-      <!-- Indicador de etapas -->
-      <div class="steps">
-        <div class="step active" id="step-indicator-1">
-          <span class="step-number">1</span>
-          <span class="step-label">Dados</span>
-        </div>
-        <div class="step-line"></div>
-        <div class="step" id="step-indicator-2">
-          <span class="step-number">2</span>
-          <span class="step-label">Idiomas</span>
+      <div class="illustration-content">
+        <h2>Crie sua conta gratuita</h2>
+        <p>Junte-se a milhares de estudantes e comece a praticar conversação com tradução em tempo real.</p>
+
+        <div class="illustration-features">
+          <div class="feature-item">
+            <i class="fas fa-user-shield"></i>
+            <span>Controle de idade e segurança</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-comments"></i>
+            <span>Chat com tradução instantânea</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Relatórios de progresso</span>
+          </div>
         </div>
       </div>
 
-      <!-- ETAPA 1: DADOS -->
-      <form id="form-cadastro" class="auth-form" novalidate>
-        <div class="input-group">
+      <div class="illustration-footer">
+        &copy; 2026 Multi Línguas. Todos os direitos reservados.
+      </div>
+    </div>
+
+    <div class="cadastro-form-container">
+      <div class="form-header">
+        <h1>Criar conta</h1>
+        <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+      </div>
+
+      <!-- Feedback geral -->
+      <div class="feedback-message" id="feedbackMessage">
+        <i class="fas fa-info-circle"></i>
+        <span id="feedbackText"></span>
+      </div>
+
+      <form id="cadastroForm" novalidate>
+        <!-- Nome -->
+        <div class="form-group">
           <label for="nome">Nome completo</label>
-          <input type="text" id="nome" placeholder="Digite seu nome" required />
-          <span class="error-msg" id="erro-nome"></span>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" maxlength="100" required>
+          </div>
+          <span class="error-message" id="nomeError">Informe seu nome completo (mín. 3 caracteres).</span>
         </div>
 
-        <div class="input-group">
+        <!-- E-mail -->
+        <div class="form-group">
           <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="seu@email.com" required />
-          <span class="error-msg" id="erro-email"></span>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" maxlength="100" required>
+          </div>
+          <span class="error-message" id="emailError">Insira um e-mail válido.</span>
         </div>
 
-        <div class="input-group">
-          <label for="idade">Idade</label>
-          <input type="number" id="idade" placeholder="Ex: 16" min="8" max="120" required />
-          <span class="error-msg" id="erro-idade"></span>
-          <small class="hint">Idade mínima: 8 anos</small>
+        <!-- Data de nascimento -->
+        <div class="form-group">
+          <label for="data_nascimento">Data de nascimento</label>
+          <div class="input-wrapper">
+            <i class="fas fa-calendar"></i>
+            <input type="date" id="data_nascimento" name="data_nascimento" required>
+          </div>
+          <span class="error-message" id="dataError">Informe uma data válida (mínimo 8 anos).</span>
         </div>
 
-        <div class="input-group">
+        <!-- Tipo de perfil + Faixa etária -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tipo_perfil">Tipo de perfil</label>
+            <div class="input-wrapper">
+              <i class="fas fa-id-badge"></i>
+              <select id="tipo_perfil" name="tipo_perfil" required>
+                <option value="">Selecione</option>
+                <option value="aluno">Aluno / Aprendiz</option>
+                <option value="professor">Professor / Escola</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
+            <span class="error-message" id="perfilError">Selecione um tipo de perfil.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="faixa_etaria">Faixa etária</label>
+            <div class="input-wrapper">
+              <i class="fas fa-child"></i>
+              <input type="text" id="faixa_etaria" name="faixa_etaria" readonly placeholder="Calculada">
+            </div>
+            <span class="error-message" id="faixaError">Faixa etária não calculada.</span>
+          </div>
+        </div>
+
+        <!-- Turma (aparece apenas para aluno) -->
+        <div class="form-group" id="turmaGroup" style="display: none;">
+          <label for="id_turma">Turma</label>
+          <div class="input-wrapper">
+            <i class="fas fa-users"></i>
+            <select id="id_turma" name="id_turma">
+              <option value="">Selecione sua turma</option>
+              <!-- Preenchido via JS/API -->
+            </select>
+          </div>
+          <span class="error-message" id="turmaError">Selecione uma turma.</span>
+        </div>
+
+        <!-- Senha -->
+        <div class="form-group">
           <label for="senha">Senha</label>
-          <input type="password" id="senha" placeholder="Mínimo 6 caracteres" required />
-          <span class="error-msg" id="erro-senha"></span>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="senha" name="senha" placeholder="Mínimo 6 caracteres" minlength="6" required>
+            <button type="button" class="toggle-password" id="toggleSenha">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <span class="error-message" id="senhaError">A senha deve ter ao menos 6 caracteres.</span>
         </div>
 
-        <div class="input-group">
-          <label for="confirmar-senha">Confirmar senha</label>
-          <input type="password" id="confirmar-senha" placeholder="Repita a senha" required />
-          <span class="error-msg" id="erro-confirmar"></span>
+        <!-- Confirmar senha -->
+        <div class="form-group">
+          <label for="confirmar_senha">Confirmar senha</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Repita a senha" required>
+            <button type="button" class="toggle-password" id="toggleConfirmar">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <span class="error-message" id="confirmarError">As senhas não coincidem.</span>
         </div>
 
-        <div class="terms">
-          <label class="checkbox-label">
-            <input type="checkbox" id="termos" required />
-            <span>Aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a></span>
+        <!-- Termos -->
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" id="termos" name="termos" required>
+            <span class="checkmark"><i class="fas fa-check"></i></span>
+            Aceito os <a href="#">Termos</a> e <a href="#">Política de Privacidade</a>
           </label>
-          <span class="error-msg" id="erro-termos"></span>
+          <span class="error-message" id="termosError">Você precisa aceitar os termos.</span>
         </div>
 
-        <button type="submit" class="btn-primary">Próximo: Escolher Idiomas</button>
+        <button type="submit" class="btn-cadastro" id="btnCadastro">
+          <span class="btn-text">Criar conta</span>
+          <span class="spinner"></span>
+        </button>
       </form>
 
-      <!-- ETAPA 2: IDIOMAS -->
-      <div id="etapa-idiomas" class="etapa-idiomas hidden">
-        <p class="etapa-descricao">Selecione um ou mais idiomas que deseja estudar e traduzir:</p>
-
-        <div class="idiomas-grid" id="lista-idiomas"></div>
-
-        <div class="selection-info">
-          <span id="contador-selecionados">0 idiomas selecionados</span>
-        </div>
-
-        <div class="etapa-actions">
-          <button type="button" class="btn-secondary" id="btn-voltar-dados">Voltar</button>
-          <button type="button" class="btn-primary" id="btn-finalizar" disabled>Finalizar Cadastro</button>
-        </div>
+      <div class="form-footer">
+        Seus dados estão protegidos conforme a <strong>LGPD</strong>.
       </div>
-
-      <p class="auth-footer">
-        Já tem uma conta? <a href="login.html">Entrar</a>
-      </p>
     </div>
-  </main>
+  </div>
 
   <script src="js/criarConta.js"></script>
 </body>

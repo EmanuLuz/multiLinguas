@@ -1,49 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi Línguas | Entrar</title>
-  <link rel="stylesheet" href="css/login.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Línguas | Login</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="auth-page">
-  <div class="background-shapes">
-    <span class="shape shape-1"></span>
-    <span class="shape shape-2"></span>
-    <span class="shape shape-3"></span>
-  </div>
+<body>
 
-  <main class="auth-container">
-    <div class="auth-card">
-      <div class="auth-header">
-        <div class="logo">
-          <span class="logo-icon">🌐</span>
-          <h1>Multi Línguas</h1>
-        </div>
-        <p class="subtitle">Entre na sua conta</p>
+  <div class="login-container">
+    <!-- LADO ESQUERDO: ILUSTRAÇÃO E BRANDING -->
+    <div class="login-illustration">
+      <div class="illustration-logo">
+        <i class="fas fa-language"></i>
+        <span>Multi Línguas</span>
       </div>
 
-      <form id="form-login" class="auth-form" novalidate>
-        <div class="input-group">
-          <label for="email-login">E-mail</label>
-          <input type="email" id="email-login" placeholder="seu@email.com" required />
-          <span class="error-msg" id="erro-login"></span>
+      <div class="illustration-content">
+        <h2>Bem-vindo de volta!</h2>
+        <p>Acesse sua conta e continue sua jornada de aprendizado com tradução em tempo real e acompanhamento pedagógico.</p>
+
+        <div class="illustration-features">
+          <div class="feature-item">
+            <i class="fas fa-comments"></i>
+            <span>Chat com tradução instantânea</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Acompanhe seu progresso</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Ambiente seguro e controlado</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="illustration-footer">
+        &copy; 2026 Multi Línguas. Todos os direitos reservados.
+      </div>
+    </div>
+
+    <!-- LADO DIREITO: FORMULÁRIO DE LOGIN -->
+    <div class="login-form-container">
+      <div class="form-header">
+        <h1>Entrar</h1>
+        <p>Ainda não tem conta? <a href="#">Cadastre-se gratuitamente</a></p>
+      </div>
+
+      <!-- Mensagem de feedback geral -->
+      <div class="feedback-message" id="feedbackMessage">
+        <i class="fas fa-info-circle"></i>
+        <span id="feedbackText"></span>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <!-- Campo: E-mail -->
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+          <span class="error-message" id="emailError">Por favor, insira um e-mail válido.</span>
         </div>
 
-        <div class="input-group">
-          <label for="senha-login">Senha</label>
-          <input type="password" id="senha-login" placeholder="Sua senha" required />
+        <!-- Campo: Senha -->
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            >
+            <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar senha">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <span class="error-message" id="senhaError">A senha deve ter pelo menos 6 caracteres.</span>
         </div>
 
-        <button type="submit" class="btn-primary">Entrar</button>
+        <!-- Opções: Lembrar / Esqueci senha -->
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" id="lembrar" name="lembrar">
+            <span class="checkmark"><i class="fas fa-check"></i></span>
+            Lembrar de mim
+          </label>
+          <a href="#" class="forgot-password">Esqueci minha senha</a>
+        </div>
+
+        <!-- Botão de Login -->
+        <button type="submit" class="btn-login" id="btnLogin">
+          <span class="btn-text">Entrar</span>
+          <span class="spinner"></span>
+        </button>
       </form>
 
-      <p class="auth-footer">
-        Não tem conta? <a href="criarConta.html">Criar conta</a>
-      </p>
+      <div class="form-footer">
+        Ao entrar, você concorda com nossos <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.
+      </div>
     </div>
-  </main>
+  </div>
 
   <script src="js/login.js"></script>
 </body>
