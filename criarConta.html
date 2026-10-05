@@ -10,6 +10,8 @@
 <body>
 
   <div class="cadastro-container">
+
+    <!-- ===== LADO ILUSTRAÇÃO ===== -->
     <div class="cadastro-illustration">
       <div class="illustration-logo">
         <i class="fas fa-language"></i>
@@ -18,30 +20,13 @@
 
       <div class="illustration-content">
         <h2>Crie sua conta gratuita</h2>
-        <p>Junte-se a milhares de estudantes e comece a praticar conversação com tradução em tempo real.</p>
-
-        <div class="illustration-features">
-          <div class="feature-item">
-            <i class="fas fa-user-shield"></i>
-            <span>Controle de idade e segurança</span>
-          </div>
-          <div class="feature-item">
-            <i class="fas fa-comments"></i>
-            <span>Chat com tradução instantânea</span>
-          </div>
-          <div class="feature-item">
-            <i class="fas fa-chart-line"></i>
-            <span>Relatórios de progresso</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="illustration-footer">
-        &copy; 2026 Multi Línguas. Todos os direitos reservados.
+        <p>Junte-se a milhares de estudantes e comece a praticar conversação em vários idiomas hoje mesmo.</p>
       </div>
     </div>
 
+    <!-- ===== LADO FORMULÁRIO ===== -->
     <div class="cadastro-form-container">
+
       <div class="form-header">
         <h1>Criar conta</h1>
         <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
@@ -54,6 +39,7 @@
       </div>
 
       <form id="cadastroForm" novalidate>
+
         <!-- Nome -->
         <div class="form-group">
           <label for="nome">Nome completo</label>
@@ -117,7 +103,6 @@
             <i class="fas fa-users"></i>
             <select id="id_turma" name="id_turma">
               <option value="">Selecione sua turma</option>
-              <!-- Preenchido via JS/API -->
             </select>
           </div>
           <span class="error-message" id="turmaError">Selecione uma turma.</span>
@@ -129,7 +114,7 @@
           <div class="input-wrapper">
             <i class="fas fa-lock"></i>
             <input type="password" id="senha" name="senha" placeholder="Mínimo 6 caracteres" minlength="6" required>
-            <button type="button" class="toggle-password" id="toggleSenha">
+            <button type="button" class="toggle-password" id="toggleSenha" aria-label="Mostrar senha">
               <i class="fas fa-eye"></i>
             </button>
           </div>
@@ -142,7 +127,7 @@
           <div class="input-wrapper">
             <i class="fas fa-lock"></i>
             <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Repita a senha" required>
-            <button type="button" class="toggle-password" id="toggleConfirmar">
+            <button type="button" class="toggle-password" id="toggleConfirmar" aria-label="Mostrar confirmação de senha">
               <i class="fas fa-eye"></i>
             </button>
           </div>
@@ -154,20 +139,23 @@
           <label class="remember-me">
             <input type="checkbox" id="termos" name="termos" required>
             <span class="checkmark"><i class="fas fa-check"></i></span>
-            Aceito os <a href="#">Termos</a> e <a href="#">Política de Privacidade</a>
+            <span>Aceito os <a href="#">Termos</a> e a <a href="#">Política de Privacidade</a></span>
           </label>
           <span class="error-message" id="termosError">Você precisa aceitar os termos.</span>
         </div>
 
+        <!-- Botão -->
         <button type="submit" class="btn-cadastro" id="btnCadastro">
           <span class="btn-text">Criar conta</span>
           <span class="spinner"></span>
         </button>
+
       </form>
 
       <div class="form-footer">
         Seus dados estão protegidos conforme a <strong>LGPD</strong>.
       </div>
+
     </div>
   </div>
 
