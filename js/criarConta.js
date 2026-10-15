@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API = 'http://localhost:3000';
 
-  // Esconde mensagens de erro no início
+  // esconde mensagens de erro no início
   document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
   feedback.style.display = 'none';
 
-  // -------- Cálculo de Idade --------
+  // calculo de idade
   function calcularIdade(data) {
     const hoje = new Date();
     const nasc = new Date(data + 'T00:00:00');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return idade;
   }
 
-  // -------- Define a Faixa Etária conforme a idade --------
+  // define faixa etaria
   dataNasc.addEventListener('change', () => {
     if (!dataNasc.value) return;
     const idade = calcularIdade(dataNasc.value);
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // -------- Mostrar / Ocultar Senha --------
+  // mostrar / ocultar senha
   document.querySelectorAll('.toggle-password').forEach(b => {
     b.addEventListener('click', () => {
       const input = b.parentElement.querySelector('input');
@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // -------- Exibição de Mensagens --------
   function mostrarFeedback(msg, tipo = 'info') {
     const icons = {
       info: 'fa-info-circle',
@@ -72,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
     feedback.style.display = 'flex';
   }
 
-  // -------- Envio do Form ao Servidor --------
+  // envio ao servidor
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validações locais do formulário
+    // validações do formulário
     if (!nome.value.trim() || !email.value.trim() || !dataNasc.value ||
         !perfil.value || !senha.value || !termos.checked) {
       return mostrarFeedback('Preencha todos os campos obrigatórios.', 'error');
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const faixaValor = faixa.dataset.value;
     if (!faixaValor) return mostrarFeedback('Idade mínima permitida: 8 anos.', 'error');
 
-    // Montagem do objeto (payload) de envio
+    // objeto (tirar duvida com o professor)
     const payload = {
       nome: nome.value.trim(),
       email: email.value.trim().toLowerCase(),

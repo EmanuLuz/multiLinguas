@@ -1,61 +1,74 @@
-const form  = document.getElementById('loginForm');
-const email = document.getElementById('loginEmail');
-const senha = document.getElementById('loginPassword');
-const btn   = document.getElementById('loginSubmitBtn');
-const toast = document.getElementById('toast');
+document.addEventListener('DOMContentLoaded', () => {
+  const form  = document.getElementById('loginForm');
+  const email = document.getElementById('loginEmail');
+  const senha = document.getElementById('loginPassword');
+  const btn   = document.getElementById('loginSubmitBtn');
+  const toast = document.getElementById('toast');
 
-function aviso(msg) {
-  toast.textContent = msg;                
-  toast.classList.add('show');            
-  setTimeout(() => toast.classList.remove('show'), 2500);  
-}
+  const API = 'http://localhost:3000';
 
-  document.querySelectorAll('.toggle-password').forEach(b => { // mostrar/ocultar senha
+  function aviso(msg) {
+    if (!toast) return alert(msg);
+    toast.textContent = msg;                
+    toast.classList.add('show');            
+    setTimeout(() => toast.classList.remove('show'), 2500);  
+  }
+
+  // mostrar / ocultar senha
+  document.querySelectorAll('.toggle-password').forEach(b => {
     b.addEventListener('click', () => {
       const input = b.parentElement.querySelector('input');   
-      const oculto = input.type === 'password';                
+      const oculto = input.type === 'password';              
       input.type = oculto ? 'text' : 'password';              
-      b.querySelector('i').className = oculto                
-        ? 'fas fa-eye-slash'
-        : 'fas fa-eye';
+      b.querySelector('i').className = oculto ? 'fas fa-eye-slash' : 'fas fa-eye';
     });
   });
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();                      
- 
-  if (!email.value || !senha.value) { // validação
-    return aviso('Preencha e-mail e senha.');
-  }
+  // envio do formulário
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();                     
 
-  btn.disabled = true;
-  btn.textContent = 'Entrando...';
-
-  try { // envia pro servidor
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email.value,
-        senha: senha.value
-      })
-    });
-
-    const data = await res.json(); // resposta do servidor
-
-    if (!res.ok) {
-      throw new Error(data.message || 'Erro ao entrar.');
+    // validação
+    if (!email.value.trim() || !senha.value.trim()) {
+      return aviso('Preencha e-mail e senha.');
     }
 
-    aviso('Bem-vindo, ' + data.usuario.nome + '!'); // funcionou
-    setTimeout(() => window.location.href = 'home.html', 1200);
+    btn.disabled = true;
+    btn.textContent = 'Entrando...';
 
-  } catch (err) {
-    aviso(err.message);
-    console.error(err);
+    // objeto (tirar duvida com o professor)
+    try {
+      const res = await fetch(`${API}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.value.trim().toLowerCase(),
+          senha: senha.value
+        })
+      });
 
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Entrar';
-  }
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Erro ao fazer login.');
+      }
+
+      // salva os dados do usuário
+      localStorage.setItem('usuarioLogado', JSON.stringify(data.usuario));
+
+      aviso('Bem-vindo, ' + data.usuario.nome + '!');
+
+      // redirecionamento
+      setTimeout(() => {
+        window.location.href = 'home.html';
+      }, 1200);
+
+    } catch (err) {
+      aviso(err.message || 'Falha ao conectar com o servidor.');
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Entrar';
+    }
+  });
 });
