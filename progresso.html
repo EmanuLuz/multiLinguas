@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi Línguas | Progresso de Aprendizado</title>
+  <link rel="stylesheet" href="css/progresso.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <header class="top-bar">
+      <div class="logo">
+        <i class="fas fa-language"></i>
+        <span>Multi Línguas</span>
+      </div>
+      <a href="home.html" class="btn-voltar">
+        <i class="fas fa-arrow-left"></i> Voltar para Home
+      </a>
+    </header>
+
+    <main class="main-content">
+      
+      <section class="welcome-header">
+        <h1>Painel de Progresso de Aprendizado</h1>
+        <p>Acompanhe em tempo real seus minutos praticados, lições concluídas e sequência de estudos no sistema.</p>
+      </section>
+
+      <section class="cards-grid">
+        
+        <div class="card-summary">
+          <div class="card-icon roxo-escuro">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-title">Tempo de Prática</span>
+            <strong class="card-value" id="totalMinutos">0 min</strong>
+            <small class="card-desc">Total acumulado de estudo</small>
+          </div>
+        </div>
+
+        <div class="card-summary">
+          <div class="card-icon roxo-medio">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-title">Lições Finalizadas</span>
+            <strong class="card-value" id="totalLicoes">0</strong>
+            <small class="card-desc">Exercícios e lições completadas</small>
+          </div>
+        </div>
+
+        <div class="card-summary">
+          <div class="card-icon roxo-claro">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-title">Dias Ativos</span>
+            <strong class="card-value" id="totalDias">0 dias</strong>
+            <small class="card-desc">Frequência em que você praticou</small>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="meta-section">
+        <div class="meta-header">
+          <span><i class="fas fa-bullseye"></i> Meta Diária: 20 Minutos de Estudo</span>
+          <strong id="metaPorcentagem">0%</strong>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="metaBarra"></div>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-header">
+          <h2><i class="fas fa-history"></i> Histórico Detalhado</h2>
+          <span class="table-subtitle">Registrado ao concluir lições</span>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Módulo / Tarefa</th>
+                <th>Tempo</th>
+                <th>Lições</th>
+                <th style="text-align: center;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaCorpo">
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/progresso.js"></script>
+</body>
+</html>
