@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API = 'http://localhost:3000';
 
+  // Esconde mensagens de erro no início
   document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
   feedback.style.display = 'none';
 
-  // -------- Idade --------
+  // -------- Cálculo de Idade --------
   function calcularIdade(data) {
     const hoje = new Date();
     const nasc = new Date(data + 'T00:00:00');
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return idade;
   }
 
-  // -------- Faixa etária (ENUM) --------
+  // -------- Define a Faixa Etária conforme a idade --------
   dataNasc.addEventListener('change', () => {
     if (!dataNasc.value) return;
     const idade = calcularIdade(dataNasc.value);
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // -------- Mostrar/ocultar senha --------
+  // -------- Mostrar / Ocultar Senha --------
   document.querySelectorAll('.toggle-password').forEach(b => {
     b.addEventListener('click', () => {
       const input = b.parentElement.querySelector('input');
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // -------- Feedback --------
+  // -------- Exibição de Mensagens --------
   function mostrarFeedback(msg, tipo = 'info') {
     const icons = {
       info: 'fa-info-circle',
@@ -71,24 +72,28 @@ document.addEventListener('DOMContentLoaded', () => {
     feedback.style.display = 'flex';
   }
 
-  // -------- Envio --------
+  // -------- Envio do Form ao Servidor --------
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Validações locais do formulário
     if (!nome.value.trim() || !email.value.trim() || !dataNasc.value ||
         !perfil.value || !senha.value || !termos.checked) {
       return mostrarFeedback('Preencha todos os campos obrigatórios.', 'error');
     }
+
     if (senha.value.length < 6) {
       return mostrarFeedback('A senha deve ter ao menos 6 caracteres.', 'error');
     }
+
     if (senha.value !== confirmar.value) {
       return mostrarFeedback('As senhas não coincidem.', 'error');
     }
 
     const faixaValor = faixa.dataset.value;
-    if (!faixaValor) return mostrarFeedback('Idade mínima: 8 anos.', 'error');
+    if (!faixaValor) return mostrarFeedback('Idade mínima permitida: 8 anos.', 'error');
 
+    // Montagem do objeto (payload) de envio
     const payload = {
       nome: nome.value.trim(),
       email: email.value.trim().toLowerCase(),
@@ -116,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error(err);
-      mostrarFeedback(err.message || 'Falha na conexão.', 'error');
+      mostrarFeedback(err.message || 'Falha na conexão com o servidor.', 'error');
     } finally {
       btn.disabled = false;
       btn.classList.remove('loading');
