@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajuste de Vocabulário - multiLinguas</title>
+  <link rel="stylesheet" href="css/vocabulario.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Barra Superior -->
+    <header class="top-bar">
+      <div class="logo">
+        <i class="fas fa-language"></i>
+        <span>multiLinguas</span>
+      </div>
+      <a href="dashboard.html" class="btn-voltar">
+        <i class="fas fa-arrow-left"></i> Voltar ao Inicio
+      </a>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      <section class="welcome-header">
+        <h1>Ajustes de Vocabulário e Leitura (RF03)</h1>
+        <p>Adapte a complexidade da linguagem e o tamanho das fontes para a sua leitura.</p>
+      </section>
+
+      <!-- Cartões de Resumo -->
+      <section class="cards-grid">
+        <div class="card-summary">
+          <div class="card-icon roxo-escuro">
+            <i class="fas fa-font"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-title">Tamanho Atual</span>
+            <span class="card-value" id="resumoFonte">16 px</span>
+            <span class="card-desc">Tamanho do texto de estudo</span>
+          </div>
+        </div>
+
+        <div class="card-summary">
+          <div class="card-icon roxo-medio">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-title">Estilo Ativo</span>
+            <span class="card-value" id="resumoEstilo">Simples</span>
+            <span class="card-desc">Nível da linguagem</span>
+          </div>
+        </div>
+
+        <div class="card-summary">
+          <div class="card-icon roxo-claro">
+            <i class="fas fa-sliders-h"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-title">Ajustes Feitos</span>
+            <span class="card-value" id="resumoTotal">0</span>
+            <span class="card-desc">Registros salvos no banco</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção de Meta / Progresso Visual -->
+      <section class="meta-section">
+        <div class="meta-header">
+          <span><i class="fas fa-eye"></i> Leitura Adaptada</span>
+          <strong id="metaPorcentagem">100% Personalizado</strong>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width: 100%;"></div>
+        </div>
+      </section>
+
+      <!-- Formulário de Preferências -->
+      <section class="form-card">
+        <h2><i class="fas fa-cog"></i> Configurar Preferência</h2>
+        <form id="formVocabulario">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="estiloVocabulario">Estilo de Vocabulário:</label>
+              <select id="estiloVocabulario" required>
+                <option value="simples">Simples (Fácil entendimento)</option>
+                <option value="formal">Formal (Linguagem corporativa)</option>
+                <option value="academico">Acadêmico (Avançado/Técnico)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="tamanhoFonte">Tamanho da Fonte (px):</label>
+              <input type="number" id="tamanhoFonte" min="12" max="28" value="16" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <i class="fas fa-save"></i> Salvar Preferência
+          </button>
+        </form>
+      </section>
+
+      <!-- Simulador em Tempo Real -->
+      <section class="form-card">
+        <h2><i class="fas fa-laptop-code"></i> Simulação do Texto de Estudo</h2>
+        <div class="preview-box">
+          <div class="preview-header">
+            <span class="badge-minutos" id="badgePreview">Simples</span>
+            <span class="table-subtitle" id="labelTamanho">16 px</span>
+          </div>
+          <p id="textoExemplo" class="preview-content">
+            Exemplo: Esta frase demonstra como o texto da sua aula será formatado com base nas suas preferências salvas.
+          </p>
+        </div>
+      </section>
+
+      <!-- Tabela de Histórico -->
+      <section class="table-card">
+        <div class="table-header">
+          <h2><i class="fas fa-history"></i> Histórico de Modificações</h2>
+          <span class="table-subtitle">Registros no MySQL</span>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Data/Hora</th>
+                <th>Estilo de Vocabulário</th>
+                <th>Tamanho da Fonte</th>
+                <th style="text-align: center;">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaCorpo">
+              <!-- Dados inseridos dinamicamente via JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/vocabulario.js"></script>
+</body>
+</html>
