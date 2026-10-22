@@ -20,12 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // carregar dados do servidor
   async function carregarProgresso() {
     try {
-      const res = await fetch(`${API}/api/progresso/${usuarioLogado.id_usuario}`);
-      const data = await res.json().catch(() => ([]));
-
-      if (!res.ok) throw new Error(data.message || 'Erro ao carregar progresso.');
-
-      renderizar(data);
+      const res = await axios.get(`${API}/api/progresso/${usuarioLogado.id_usuario}`);
+      renderizar(res.data);
     } catch (err) {
       console.error(err);
       tabela.innerHTML = `<tr><td colspan="5" style="text-align:center;">Falha ao carregar dados do servidor.</td></tr>`;
@@ -105,17 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!confirm('Deseja apagar este registro do histórico?')) return;
 
     try {
-      const res = await fetch(`${API}/api/progresso/${id_progresso}`, {
-        method: 'DELETE'
-      });
-
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.message || 'Erro ao apagar registro.');
-
+      await axios.delete(`${API}/api/progresso/${id_progresso}`);
       carregarProgresso();
     } catch (err) {
       console.error(err);
-      alert(err.message || 'Erro ao excluir registro.');
+      const msgErro = err.response?.data?.message || 'Erro ao excluir registro.';
+      alert(msgErro);
     }
   }
 

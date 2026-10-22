@@ -38,20 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // objeto (tirar duvida com o professor)
     try {
-      const res = await fetch(`${API}/api/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email.value.trim().toLowerCase(),
-          senha: senha.value
-        })
+      const res = await axios.post(`${API}/api/login`, {
+        email: email.value.trim().toLowerCase(),
+        senha: senha.value
       });
 
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        throw new Error(data.message || 'Erro ao fazer login.');
-      }
+      const data = res.data;
 
       // salva os dados do usuário
       localStorage.setItem('usuarioLogado', JSON.stringify(data.usuario));
@@ -64,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1200);
 
     } catch (err) {
-      aviso(err.message || 'Falha ao conectar com o servidor.');
+      const msgErro = err.response?.data?.message || 'Falha ao conectar com o servidor.';
+      aviso(msgErro);
       console.error(err);
     } finally {
       btn.disabled = false;

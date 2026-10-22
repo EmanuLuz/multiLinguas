@@ -105,22 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     btn.classList.add('loading');
 
-    try {
-      const res = await fetch(`${API}/api/usuarios`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+    // arrumei para Axios:
+    try { 
+      const res = await axios.post(`${API}/api/usuarios`, payload);
 
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.message || 'Erro ao cadastrar.');
-
-      mostrarFeedback('Conta criada com sucesso!', 'success');
+      mostrarFeedback(res.data.message || 'Conta criada com sucesso!', 'success');
       setTimeout(() => window.location.href = 'login.html', 1500);
 
     } catch (err) {
       console.error(err);
-      mostrarFeedback(err.message || 'Falha na conexão com o servidor.', 'error');
+      const msgErro = err.response?.data?.message || 'Falha na conexão com o servidor.';
+      mostrarFeedback(msgErro, 'error');
     } finally {
       btn.disabled = false;
       btn.classList.remove('loading');
