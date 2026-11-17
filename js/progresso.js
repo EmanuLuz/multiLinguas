@@ -20,8 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // carregar dados do servidor
   async function carregarProgresso() {
     try {
-      const res = await axios.get(`${API}/api/progresso/${usuarioLogado.id_usuario}`);
-      renderizar(res.data);
+      const res = await axios.get(`http://127.0.0.1:3000/progresso`);
+      const dadosDoUsuario = res.data.filter(
+        (item) => item.id_usuario === usuarioLogado.id_usuario
+      );
+      renderizar(dadosDoUsuario);
     } catch (err) {
       console.error(err);
       tabela.innerHTML = `<tr><td colspan="5" style="text-align:center;">Falha ao carregar dados do servidor.</td></tr>`;
