@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
   const tabela = document.getElementById('tabelaCorpo');
   const txtMinutos = document.getElementById('totalMinutos');
   const txtLicoes = document.getElementById('totalLicoes');
@@ -8,32 +8,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API = 'http://localhost:3000';
 
-  // recupera usuario logado
-  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+  // // recupera usuario logado
+  // const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
-  if (!usuarioLogado || !usuarioLogado.id_usuario) {
-    alert('Por favor, faça login para acessar seu progresso.');
-    window.location.href = 'login.html';
-    return;
-  }
+  // if (!usuarioLogado || !usuarioLogado.id_usuario) {
+  //   alert('Por favor, faça login para acessar seu progresso.');
+  //   window.location.href = 'login.html';
+  //   return;
+  // }
 
   // carregar dados do servidor
   async function carregarProgresso() {
     try {
-      const res = await axios.get(`http://127.0.0.1:3000/progresso`);
-      const dadosDoUsuario = res.data.filter(
-        (item) => item.id_usuario === usuarioLogado.id_usuario
-      );
-      renderizar(dadosDoUsuario);
-    } catch (err) {
+      const res = await axios.get('http://127.0.0.1:3000/progresso');
+      renderizar(res.data);
+      } catch (err) {
       console.error(err);
       tabela.innerHTML = `<tr><td colspan="5" style="text-align:center;">Falha ao carregar dados do servidor.</td></tr>`;
     }
   }
 
-  // carrega os dados na tabela 
   function renderizar(dados) {
     tabela.innerHTML = '';
+
+  // async function carregarProgresso() {
+  //   try {
+  //     const res = await axios.get(`http://127.0.0.1:3000/progresso`);
+  //     renderizar(res.data);
+  //   } catch (err) {
+  //     console.error(err);
+  //     tabela.innerHTML = `<tr><td colspan="5" style="text-align:center;">Falha ao carregar dados do servidor.</td></tr>`;
+  //   }
+  // }
+
+  // // carrega os dados na tabela 
+  // function renderizar(dados) {
+  // // carrega os dados na tabela 
+  // function renderizar(dados) {
+  //   tabela.innerHTML = '';
 
     let totalMin = 0;
     let totalLic = 0;
@@ -86,8 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
     txtLicoes.textContent = totalLic;
     txtDias.textContent = `${datasSet.size} dia(s)`;
 
-    const metaDiaria = 30;
-    const pct = Math.min(Math.round((minutosHoje / metaDiaria) * 100), 100);
+    const ultimaData = Array.from(datasSet).sort().pop();
+    const minutosUltimaData = dados
+      .filter((item) => (item.data_registro ? item.data_registro.split('T')[0] : dataHoje) === ultimaData)
+      .reduce((acc, item) => acc + Number(item.minutos_praticados || 0), 0);
+
+    // conta da meta diaria
+    const metaDiaria = 20;
+    const pct = Math.min(Math.round((minutosUltimaData / metaDiaria) * 100), 100);
     if (metaPorcentagemEl) metaPorcentagemEl.textContent = `${pct}%`;
     if (metaBarraEl) metaBarraEl.style.width = `${pct}%`;
 
